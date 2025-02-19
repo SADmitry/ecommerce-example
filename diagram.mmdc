@@ -1,0 +1,34 @@
+flowchart LR
+    subgraph "E-commerce Microservices"
+        saga[Saga Orchestrator]
+        order[Order Service]
+        payment[Payment Service]
+        notify[Notification Service]
+        inventory[Inventory Service]
+    end
+
+    subgraph "Databases"
+        orderDB[(Order DB)]
+        paymentDB[(Payment DB)]
+        notifyDB[(Notification DB)]
+        inventoryDB[(Inventory DB)]
+    end
+
+    user[User] -->|Place/Track Orders| order
+
+    %% Saga flow
+    order -->|Start Saga| saga
+    saga -->|Invoke Payment| payment
+    saga -->|Update Inventory| inventory
+    saga -->|Send Notifications| notify
+    saga -->|Update Order Status| order
+
+    %% DB interactions
+    order -->|Create/Update Orders| orderDB
+    payment -->|Store Payment Info| paymentDB
+    notify -->|Store Notification Logs| notifyDB
+    inventory -->|Manage Stock Data| inventoryDB
+
+    %% External calls
+    payment -->|Process Payment| extPayment[(External Payment Provider)]
+    notify -->|Email/SMS/Push| extNotify[(External Notifications Provider)]

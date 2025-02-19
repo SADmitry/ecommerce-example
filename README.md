@@ -52,3 +52,6 @@ Response:
     "status": "pending"
 }
 ```
+
+## Proposed architectural diagram
+This example implements part of an architecture proposed (`diagram.mmdc`). It's an open tool readily available through `npm` or online
