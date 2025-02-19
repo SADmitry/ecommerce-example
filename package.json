@@ -1,0 +1,18 @@
+{
+  "name": "ecommerce",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "services/*"
+  ],
+  "scripts": {
+    "start:order": "cd services/order-service && node server.js",
+    "start:payment": "cd services/payment-service && node server.js",
+    "start:orchestrator": "cd services/orchestrator-service && node orchestrator.js",
+    "migrate:all": "npm run migrate:order",
+    "start:all": "concurrently \"npm run start:order\" \"npm run start:payment\" \"npm run start:orchestrator\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.0.0"
+  }
+}
