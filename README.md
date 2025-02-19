@@ -19,7 +19,6 @@ ecommerce-microservices/
 │   ├── payment-service/       # Simulates payment processing
 │   ├── orchestrator-service/  # Coordinates payments & order updates
 │── package.json               # Monorepo configuration (npm workspaces)
-│── .gitignore                 # Git exclusions
 │── README.md                  # Documentation
 ```
 
