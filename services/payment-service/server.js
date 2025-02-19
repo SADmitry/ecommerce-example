@@ -1,10 +1,6 @@
 require('dotenv').config();
-const express = require('express');
 const { Worker } = require('bullmq');
 const Redis = require('ioredis');
-
-const app = express();
-app.use(express.json());
 
 const redis = new Redis({ host: process.env.REDIS_HOST, port: process.env.REDIS_PORT, maxRetriesPerRequest: null });
 console.log('🚀 Payment Service is connecting Redis...');
@@ -28,4 +24,4 @@ const paymentWorker = new Worker('orchestratorQueue', async (job) => {
     }
 }, { connection: redis });
 
-app.listen(4000, () => console.log('🚀 Payment Service in on port 4000'));
+console.log('🚀 Payment Service is listening for "PaymentProcessing" tasks...');

@@ -54,4 +54,10 @@ Response:
 ```
 
 ## Proposed architectural diagram
+
 This example implements part of an architecture proposed (`diagram.mmdc`). It's an open tool readily available through `npm` or online
+
+## Potential changes and evolution
+- Since we have independent services communicating through message broker they can have different tech stack if necessary while keeping protocol intact
+- It is possible to replace Redis with Kafka or any other message broker, here we have an example easily ready for demonstration.
+- For complex deployments Kubernetes / Kustomize / ArgoCD may be intruduced
